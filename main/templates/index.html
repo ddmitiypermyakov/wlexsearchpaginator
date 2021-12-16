@@ -1,10 +1,56 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href='{% static "css/style.css" %}'/>
     <title>Title</title>
 </head>
 <body>
-Hi
+<h1> Треннинговая страница</h1>
+<input class="form-control" type="text" placeholder="Название" id="search-text" onkeyup="tableSearch()">
+<table class="sortable" id="trainig_table" >
+    <tr>
+        <td >Название</td>
+        <td>Количество</td>
+        <td>Расстояние</td>
+        <td >Дата</td>
+
+    </tr>
+    {% for item in trainig %}
+    <tr>
+        <td>{{item.title}}</td>
+        <td>{{item.quantity}}</td>
+        <td>{{item.distance}}</td>
+        <td>{{item.date}}</td>
+
+    </tr>
+    {% endfor %}
+</table>
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; Следующая</a>
+            <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+        {% endif %}
+
+        <span class="current">
+            Страница {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Предыдущая &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+<script type="text/javascript" src='{% static "js/sorttable.js" %}'></script>
+<script type="text/javascript" src='{% static "js/tablesearch.js" %}'></script>
+
+<script>
+
+
+</script>
 </body>
 </html>
