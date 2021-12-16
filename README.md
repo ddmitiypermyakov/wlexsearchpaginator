@@ -1,1 +1,1 @@
-# wlexsearchpaginator
+Поиск(фильтрация), пагинация (Django, js,css)
